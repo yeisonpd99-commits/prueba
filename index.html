@@ -4,48 +4,124 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La razón para irme</title>
+
+<!-- Manifest para PWA -->
+<link rel="manifest" href="manifest.json">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{background:linear-gradient(180deg,#0f0f0f,#1b1b1b);color:#fff;text-align:center;overflow-x:hidden;min-height:100vh;}
-h1{margin-top:40px;font-size:2.2em;}
-.contenido{padding:20px;max-width:420px;margin:auto;position:relative;z-index:2;}
-.texto{margin:20px 0;line-height:1.6;opacity:0.9;font-size:1.05em;}
-.imagen-principal{width:100%;border-radius:15px;margin-top:20px;box-shadow:0 0 20px rgba(255,0,80,.4);}
-.corazon{position:fixed;top:-50px;pointer-events:none;z-index:1;animation:caer linear infinite;}
-@keyframes caer{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(110vh) rotate(360deg);opacity:0;}}
-.play{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);background:#ff004f;padding:12px 22px;border-radius:30px;font-size:0.95em;cursor:pointer;z-index:10;box-shadow:0 0 15px rgba(255,0,80,.6);user-select:none;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: linear-gradient(180deg,#0f0f0f,#1b1b1b);
+    color:#fff;
+    text-align:center;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+h1{
+    margin-top:40px;
+    font-size:2.2em;
+}
+
+.contenido{
+    padding:20px;
+    max-width:420px;
+    margin:auto;
+    position:relative;
+    z-index:2;
+}
+
+.texto{
+    margin:20px 0;
+    line-height:1.6;
+    opacity:0.9;
+    font-size:1.05em;
+}
+
+.imagen-principal{
+    width:100%;
+    border-radius:15px;
+    margin-top:20px;
+    box-shadow:0 0 20px rgba(255,0,80,.4);
+}
+
+/* Corazones */
+.corazon{
+    position:fixed;
+    top:-50px;
+    pointer-events:none;
+    z-index:1;
+    animation: caer linear infinite;
+}
+
+@keyframes caer{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
+
+/* Botón música */
+.play{
+    position:fixed;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ff004f;
+    padding:12px 22px;
+    border-radius:30px;
+    font-size:0.95em;
+    cursor:pointer;
+    z-index:10;
+    box-shadow:0 0 15px rgba(255,0,80,.6);
+    user-select:none;
+}
 </style>
 </head>
+
 <body>
 
 <div class="contenido">
-<h1>La razón para irme</h1>
-<p class="texto">
-La razón por la que no me voy no es porque no duela, es porque cuando uno ama de verdad, como te amo yo, entiende que quedarse también puede ser una forma de amar, aunque nunca sea correspondido.
-</p>
-<img src="data:image/jpeg;base64,REEMPLAZA_POR_BASE64_DE_TU_IMAGEN" alt="Imagen" class="imagen-principal">
+    <h1>La razón para irme</h1>
+    <p class="texto">
+        No hay ninguna razón para irme, porque aunque yo no sea el hombre perfecto para ti, mi corazón sí te escogió, y lo hizo sin dudas y sin miedo. Pero entiendo que el tuyo nunca pudo escoger el mío, y que a veces dos corazones no se encuentran, aunque uno ame con toda el alma. A mí me dijeron lucha por lo que más anhelas y amas, y yo luché, y luché de verdad por esté amor que siento. pero, de qué sirve amar con todo el corazón y demostrarlo todo por una persona, esa es la pregunta que todavía me hago. Te he sido sincero muchas veces, y hoy también lo soy, no te voy a mentir. me hubiera gustado tanto que todo fuera diferente, que tu corazón se hubiera acercado al mío, así como el mío siempre intentó acercarse al tuyo. La imagen de la portada y la que está aquí abajo lo dice todo, simboliza ese amor tan grande que yo tenía y que todavía tengo aquí, un amor casi más grande que yo, el que siento por ti. Pero ese amor se quedó en mis manos, nunca pude entregártelo, y aun así nunca dejó de ser real. Y si hay una razón por la que no me voy, es porque cuando uno ama así como te amo yo, no significa que tenga que irme, aunque tú nunca me correspondas. Quiero que escuches la canción, aunque ya te la haya puesto muchas veces, hazlo con calma y sin prisa. Quiero que nunca dudes cuánto te amo, mi ojitos lindos.
+    </p>
+    <img src="REEMPLAZA_POR_BASE64_DE_TU_IMAGEN.png" alt="Imagen" class="imagen-principal">
 </div>
 
 <div class="play" id="playBtn">▶️ Reproducir música</div>
 
 <audio id="musica" loop playsinline>
-<source src="data:audio/mpeg;base64,REEMPLAZA_POR_BASE64_DE_TU_MUSICA" type="audio/mpeg">
+    <source src="cancion.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 // PLAY / PAUSA
-const musica=document.getElementById("musica");
-const playBtn=document.getElementById("playBtn");
-let reproduciendo=false;
-playBtn.addEventListener("click",()=>{
-    if(!reproduciendo){musica.play().then(()=>{reproduciendo=true;playBtn.innerText="⏸️ Pausar música";});}
-    else{musica.pause();reproduciendo=false;playBtn.innerText="▶️ Reproducir música";}
+const musica = document.getElementById("musica");
+const playBtn = document.getElementById("playBtn");
+let reproduciendo = false;
+
+playBtn.addEventListener("click", () => {
+    if(!reproduciendo){
+        musica.play().then(()=>{
+            reproduciendo = true;
+            playBtn.innerText="⏸️ Pausar música";
+        });
+    } else {
+        musica.pause();
+        reproduciendo=false;
+        playBtn.innerText="▶️ Reproducir música";
+    }
 });
 
 // Corazones cayendo
 function crearCorazon(){
     const c=document.createElement("img");
-    c.src="data:image/png;base64,REEMPLAZA_POR_BASE64_DE_TU_CORAZON";
+    c.src="REEMPLAZA_POR_BASE64_DE_TU_CORAZON.png";
     c.className="corazon";
     c.style.left=Math.random()*100+"vw";
     c.style.width=(20+Math.random()*30)+"px";
@@ -55,18 +131,23 @@ function crearCorazon(){
 }
 setInterval(crearCorazon,400);
 
-// Media Session API
+// Media Session API para notificaciones con controles
 if('mediaSession' in navigator){
     navigator.mediaSession.metadata=new MediaMetadata({
         title:'La razón para irme',
         artist:'Yeison Pérez',
         album:'Página musical',
-        artwork:[{src:'data:image/jpeg;base64,REEMPLAZA_POR_BASE64_DE_TU_IMAGEN',sizes:'512x512',type:'image/jpeg'}]
+        artwork:[
+            {src:'foto.jpg',sizes:'512x512',type:'image/jpeg'}
+        ]
     });
-    navigator.mediaSession.setActionHandler('play',()=>{musica.play();reproduciendo=true;playBtn.innerText="⏸️ Pausar música";});
-    navigator.mediaSession.setActionHandler('pause',()=>{musica.pause();reproduciendo=false;playBtn.innerText="▶️ Reproducir música";});
+
+    navigator.mediaSession.setActionHandler('play', ()=>{ musica.play(); reproduciendo=true; playBtn.innerText="⏸️ Pausar música"; });
+    navigator.mediaSession.setActionHandler('pause', ()=>{ musica.pause(); reproduciendo=false; playBtn.innerText="▶️ Reproducir música"; });
 }
 </script>
 
 </body>
 </html>
+
+
