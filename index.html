@@ -15,14 +15,20 @@ body {
     overflow-x: hidden;
 }
 
-/* ❤️ CORAZONES FLOTANDO */
-.heart {
+/* ❤️ CAPA DE CORAZONES (SOBRE TODO) */
+.hearts-layer {
     position: fixed;
-    bottom: -30px;
-    color: rgba(255, 95, 162, 0.3);
-    animation: float 9s linear infinite;
+    inset: 0;
     pointer-events: none;
-    z-index: 1;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    bottom: -40px;
+    color: rgba(255, 95, 162, 0.35);
+    animation: float 10s linear infinite;
 }
 
 @keyframes float {
@@ -39,7 +45,7 @@ body {
     text-align: center;
 }
 
-/* CARTA IMAGEN */
+/* CARTA */
 .letter-img {
     width: 80%;
     max-width: 320px;
@@ -54,7 +60,7 @@ body {
     50% { transform: scale(1.05); }
 }
 
-/* MENSAJE INTERMEDIO */
+/* MENSAJE */
 .love-message {
     display: none;
     margin-top: 120px;
@@ -97,7 +103,7 @@ p {
     text-align: justify;
 }
 
-/* IMAGEN FINAL */
+/* IMAGEN */
 .photo {
     width: 100%;
     max-width: 360px;
@@ -106,7 +112,7 @@ p {
     border-radius: 15px;
 }
 
-/* BOTÓN MÚSICA */
+/* BOTÓN */
 .music-btn {
     width: 100%;
     max-width: 280px;
@@ -124,19 +130,8 @@ p {
 
 <body>
 
-<!-- ❤️ GENERADOR DE CORAZONES -->
-<script>
-for (let i = 0; i < 20; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (12 + Math.random() * 18) + "px";
-    heart.style.animationDuration = (7 + Math.random() * 6) + "s";
-    heart.style.animationDelay = Math.random() * 5 + "s";
-    document.body.appendChild(heart);
-}
-</script>
+<!-- ❤️ CORAZONES -->
+<div class="hearts-layer" id="hearts"></div>
 
 <div class="container">
 
@@ -189,13 +184,27 @@ for (let i = 0; i < 20; i++) {
 </div>
 
 <script>
+/* GENERAR CORAZONES */
+const heartsContainer = document.getElementById("hearts");
+
+for (let i = 0; i < 22; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 18) + "px";
+    heart.style.animationDuration = (8 + Math.random() * 6) + "s";
+    heart.style.animationDelay = Math.random() * 6 + "s";
+    heartsContainer.appendChild(heart);
+}
+
+/* INTERACCIÓN */
 const letter = document.getElementById("letter");
 const loveMsg = document.getElementById("loveMsg");
 const content = document.getElementById("content");
 const musicBtn = document.getElementById("musicBtn");
 const music = document.getElementById("music");
 
-/* APERTURA */
 letter.onclick = () => {
     letter.style.display = "none";
     loveMsg.style.display = "block";
@@ -240,5 +249,3 @@ function setMediaSession() {
 
 </body>
 </html>
-
-
