@@ -3,192 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La razón para irme</title>
-
-<link rel="manifest" href="manifest.json">
+<title>Razon para irme</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, sans-serif;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle, #1b1b1b, #000);
+    font-family: 'Georgia', serif;
+    color: #eee;
+    overflow-x: hidden;
 }
 
-body{
-    background: linear-gradient(180deg,#0f0f0f,#1b1b1b);
-    color:#fff;
-    overflow-x:hidden;
-    min-height:100vh;
+/* ❤️ CORAZONES FLOTANDO */
+.heart {
+    position: fixed;
+    bottom: -30px;
+    color: rgba(255, 95, 162, 0.3);
+    animation: float 9s linear infinite;
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* INTRO */
-#intro{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background:linear-gradient(180deg,#0f0f0f,#1b1b1b);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999;
-    animation: desaparecer 2s ease forwards;
-    animation-delay:3s;
+@keyframes float {
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
 }
 
-#intro h2{
-    color:#ff004f;
-    font-size:2.4em;
-    text-align:center;
-    letter-spacing:2px;
-    animation: latir 1.5s infinite;
-    text-shadow:0 0 20px rgba(255,0,80,.6);
+/* CONTENEDOR */
+.container {
+    position: relative;
+    z-index: 2;
+    padding: 20px 15px 40px;
+    text-align: center;
 }
 
-@keyframes latir{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.08);}
-    100%{transform:scale(1);}
+/* CARTA IMAGEN */
+.letter-img {
+    width: 80%;
+    max-width: 320px;
+    margin: 80px auto 0;
+    display: block;
+    cursor: pointer;
+    animation: pulse 2.5s infinite;
 }
 
-@keyframes desaparecer{
-    to{
-        opacity:0;
-        visibility:hidden;
-    }
+@keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* MENSAJE INTERMEDIO */
+.love-message {
+    display: none;
+    margin-top: 120px;
+    font-size: 26px;
+    padding: 0 10px;
+    color: #ff5fa2;
+    animation: fadeZoom 2.5s;
+}
+
+@keyframes fadeZoom {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* CONTENIDO */
-.contenido{
-    padding:25px 22px;
-    max-width:480px;
-    margin:auto;
-    position:relative;
-    z-index:2;
-    opacity:0;
-    animation: mostrarContenido 1.5s ease forwards;
-    animation-delay:3.5s;
+.content {
+    display: none;
+    margin-top: 40px;
+    background: #111;
+    padding: 25px 18px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    animation: fadeUp 1.5s;
 }
 
-@keyframes mostrarContenido{
-    to{opacity:1;}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-h1{
-    margin:40px 0 20px;
-    font-size:2.2em;
-    text-align:center;
+h1 {
+    font-size: 26px;
+    color: #ff5fa2;
+    margin-bottom: 20px;
 }
 
-/* TEXTO MEJOR ACOMODADO */
-.texto{
-    margin:20px 0;
-    line-height:1.75;
-    font-size:1.05em;
-    opacity:0.95;
-    text-align:justify;
-    text-justify:inter-word;
-    word-spacing:1px;
+p {
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
 }
 
-.imagen-principal{
-    width:100%;
-    border-radius:15px;
-    margin:25px 0 40px;
-    box-shadow:0 0 20px rgba(255,0,80,.4);
-}
-
-/* CORAZONES */
-.corazon{
-    position:fixed;
-    top:-50px;
-    pointer-events:none;
-    z-index:1;
-    animation: caer linear infinite;
-}
-
-@keyframes caer{
-    0%{transform:translateY(0) rotate(0deg);opacity:1;}
-    100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
+/* IMAGEN FINAL */
+.photo {
+    width: 100%;
+    max-width: 360px;
+    margin: 25px auto;
+    display: block;
+    border-radius: 15px;
 }
 
 /* BOTÓN MÚSICA */
-.play{
-    position:fixed;
-    bottom:15px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#ff004f;
-    padding:12px 22px;
-    border-radius:30px;
-    font-size:0.95em;
-    cursor:pointer;
-    z-index:10;
-    box-shadow:0 0 15px rgba(255,0,80,.6);
-    user-select:none;
+.music-btn {
+    width: 100%;
+    max-width: 280px;
+    margin: 20px auto 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    background: #ff5fa2;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-    <h2>MI OJITOS LINDOS<br>TE AMO</h2>
+<!-- ❤️ GENERADOR DE CORAZONES -->
+<script>
+for (let i = 0; i < 20; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 18) + "px";
+    heart.style.animationDuration = (7 + Math.random() * 6) + "s";
+    heart.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(heart);
+}
+</script>
+
+<div class="container">
+
+    <!-- CARTA -->
+    <img src="carta.png" class="letter-img" id="letter" alt="Carta">
+
+    <!-- MENSAJE -->
+    <div class="love-message" id="loveMsg">
+        MI OJITOS LINDOS TE AMO
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="content" id="content">
+        <h1>Razon para irme</h1>
+
+        <p>
+        No hay ninguna razón para irme, porque aunque yo no sea el hombre perfecto para ti,
+        mi corazón sí te escogió, y lo hizo sin dudas y sin miedo. Pero entiendo que el tuyo
+        nunca pudo escoger el mío, y que a veces dos corazones no se encuentran, aunque uno
+        ame con toda el alma.<br><br>
+
+        A mí me dijeron lucha por lo que más anhelas y amas, y yo luché, y luché de verdad
+        por esté amor que siento. pero, de qué sirve amar con todo el corazón y demostrarlo
+        todo por una persona, esa es la pregunta que todavía me hago.<br><br>
+
+        Te he sido sincero muchas veces, y hoy también lo soy, no te voy a mentir. me hubiera
+        gustado tanto que todo fuera diferente, que tu corazón se hubiera acercado al mío,
+        así como el mío siempre intentó acercarse al tuyo.<br><br>
+
+        La imagen de la portada y la que está aquí abajo lo dice todo, simboliza ese amor tan
+        grande que yo tenía y que todavía tengo aquí, un amor casi más grande que yo, el que
+        siento por ti. Pero ese amor se quedó en mis manos, nunca pude entregártelo, y aun así
+        nunca dejó de ser real.<br><br>
+
+        Y si hay una razón por la que no me voy, es porque cuando uno ama así como te amo yo,
+        no significa que tenga que irme, aunque tú nunca me correspondas.<br><br>
+
+        Quiero que escuches la canción, aunque ya te la haya puesto muchas veces, hazlo con
+        calma y sin prisa. Quiero que nunca dudes cuánto te amo, mi ojitos lindos.
+        </p>
+
+        <img src="yo-Photoroom.png" class="photo" alt="Amor en mis manos">
+
+        <button class="music-btn" id="musicBtn">🎵 Escuchar la canción</button>
+
+        <audio id="music" preload="metadata">
+            <source src="cancion.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 </div>
-
-<div class="contenido">
-    <h1>La razón para irme</h1>
-
-    <p class="texto">
-        No hay ninguna razón para irme, porque aunque yo no sea el hombre perfecto para ti, mi corazón sí te escogió, y lo hizo sin dudas y sin miedo. Pero entiendo que el tuyo nunca pudo escoger el mío, y que a veces dos corazones no se encuentran, aunque uno ame con toda el alma. A mí me dijeron que luchara por lo que más anhelaba y amaba, y yo luché, y luché de verdad por este amor que siento. Pero, ¿de qué sirve amar con todo el corazón y demostrarlo todo por una persona? Esa es la pregunta que todavía me hago.
-        <br><br>
-        Te he sido sincero muchas veces, y hoy también lo soy, no te voy a mentir. Me hubiera gustado tanto que todo fuera diferente, que tu corazón se hubiera acercado al mío, así como el mío siempre intentó acercarse al tuyo. La imagen de la portada y la que está aquí abajo lo dice todo: simboliza ese amor tan grande que yo tenía y que todavía tengo aquí, un amor casi más grande que yo, el que siento por ti.
-        <br><br>
-        Pero ese amor se quedó en mis manos, nunca pude entregártelo, y aun así nunca dejó de ser real. Y si hay una razón por la que no me voy, es porque cuando uno ama así como te amo yo, no significa que tenga que irme, aunque tú nunca me correspondas. Quiero que escuches la canción, aunque ya te la haya puesto muchas veces, hazlo con calma y sin prisa. Quiero que nunca dudes cuánto te amo, mi ojitos lindos.
-    </p>
-
-    <img src="REEMPLAZA_POR_BASE64_DE_TU_IMAGEN.png" class="imagen-principal">
-</div>
-
-<div class="play" id="playBtn">▶️ Reproducir música</div>
-
-<audio id="musica" loop playsinline>
-    <source src="cancion.mp3" type="audio/mpeg">
-</audio>
 
 <script>
-const musica = document.getElementById("musica");
-const playBtn = document.getElementById("playBtn");
-let reproduciendo = false;
+const letter = document.getElementById("letter");
+const loveMsg = document.getElementById("loveMsg");
+const content = document.getElementById("content");
+const musicBtn = document.getElementById("musicBtn");
+const music = document.getElementById("music");
 
-playBtn.addEventListener("click", () => {
-    if(!reproduciendo){
-        musica.play().then(()=>{
-            reproduciendo = true;
-            playBtn.innerText="⏸️ Pausar música";
-        });
+/* APERTURA */
+letter.onclick = () => {
+    letter.style.display = "none";
+    loveMsg.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    setTimeout(() => {
+        loveMsg.style.display = "none";
+        content.style.display = "block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 2600);
+};
+
+/* MÚSICA + MEDIA SESSION */
+musicBtn.onclick = () => {
+    if (music.paused) {
+        music.play();
+        musicBtn.textContent = "⏸ Pausar canción";
+        setMediaSession();
     } else {
-        musica.pause();
-        reproduciendo=false;
-        playBtn.innerText="▶️ Reproducir música";
+        music.pause();
+        musicBtn.textContent = "🎵 Escuchar la canción";
     }
-});
+};
 
-// Corazones
-function crearCorazon(){
-    const c=document.createElement("img");
-    c.src="REEMPLAZA_POR_BASE64_DE_TU_CORAZON.png";
-    c.className="corazon";
-    c.style.left=Math.random()*100+"vw";
-    c.style.width=(20+Math.random()*30)+"px";
-    c.style.animationDuration=(3+Math.random()*4)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),8000);
+function setMediaSession() {
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'Razon para irme',
+            artist: 'Para mi ojitos lindos',
+            album: 'Desde mi corazón',
+            artwork: [
+                { src: 'yo-Photoroom.png', sizes: '512x512', type: 'image/png' }
+            ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', () => music.play());
+        navigator.mediaSession.setActionHandler('pause', () => music.pause());
+        navigator.mediaSession.setActionHandler('stop', () => music.pause());
+    }
 }
-setInterval(crearCorazon,400);
 </script>
 
 </body>
