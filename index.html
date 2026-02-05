@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La razón para irme</title>
 
-<!-- Manifest para PWA -->
 <link rel="manifest" href="manifest.json">
 
 <style>
@@ -19,39 +18,89 @@
 body{
     background: linear-gradient(180deg,#0f0f0f,#1b1b1b);
     color:#fff;
-    text-align:center;
     overflow-x:hidden;
     min-height:100vh;
 }
 
-h1{
-    margin-top:40px;
-    font-size:2.2em;
+/* INTRO */
+#intro{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:linear-gradient(180deg,#0f0f0f,#1b1b1b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    animation: desaparecer 2s ease forwards;
+    animation-delay:3s;
 }
 
+#intro h2{
+    color:#ff004f;
+    font-size:2.4em;
+    text-align:center;
+    letter-spacing:2px;
+    animation: latir 1.5s infinite;
+    text-shadow:0 0 20px rgba(255,0,80,.6);
+}
+
+@keyframes latir{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+
+@keyframes desaparecer{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+/* CONTENIDO */
 .contenido{
-    padding:20px;
-    max-width:420px;
+    padding:25px 22px;
+    max-width:480px;
     margin:auto;
     position:relative;
     z-index:2;
+    opacity:0;
+    animation: mostrarContenido 1.5s ease forwards;
+    animation-delay:3.5s;
 }
 
+@keyframes mostrarContenido{
+    to{opacity:1;}
+}
+
+h1{
+    margin:40px 0 20px;
+    font-size:2.2em;
+    text-align:center;
+}
+
+/* TEXTO MEJOR ACOMODADO */
 .texto{
     margin:20px 0;
-    line-height:1.6;
-    opacity:0.9;
+    line-height:1.75;
     font-size:1.05em;
+    opacity:0.95;
+    text-align:justify;
+    text-justify:inter-word;
+    word-spacing:1px;
 }
 
 .imagen-principal{
     width:100%;
     border-radius:15px;
-    margin-top:20px;
+    margin:25px 0 40px;
     box-shadow:0 0 20px rgba(255,0,80,.4);
 }
 
-/* Corazones */
+/* CORAZONES */
 .corazon{
     position:fixed;
     top:-50px;
@@ -65,7 +114,7 @@ h1{
     100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
-/* Botón música */
+/* BOTÓN MÚSICA */
 .play{
     position:fixed;
     bottom:15px;
@@ -85,12 +134,23 @@ h1{
 
 <body>
 
+<!-- INTRO -->
+<div id="intro">
+    <h2>MI OJITOS LINDOS<br>TE AMO</h2>
+</div>
+
 <div class="contenido">
     <h1>La razón para irme</h1>
+
     <p class="texto">
-        No hay ninguna razón para irme, porque aunque yo no sea el hombre perfecto para ti, mi corazón sí te escogió, y lo hizo sin dudas y sin miedo. Pero entiendo que el tuyo nunca pudo escoger el mío, y que a veces dos corazones no se encuentran, aunque uno ame con toda el alma. A mí me dijeron lucha por lo que más anhelas y amas, y yo luché, y luché de verdad por esté amor que siento. pero, de qué sirve amar con todo el corazón y demostrarlo todo por una persona, esa es la pregunta que todavía me hago. Te he sido sincero muchas veces, y hoy también lo soy, no te voy a mentir. me hubiera gustado tanto que todo fuera diferente, que tu corazón se hubiera acercado al mío, así como el mío siempre intentó acercarse al tuyo. La imagen de la portada y la que está aquí abajo lo dice todo, simboliza ese amor tan grande que yo tenía y que todavía tengo aquí, un amor casi más grande que yo, el que siento por ti. Pero ese amor se quedó en mis manos, nunca pude entregártelo, y aun así nunca dejó de ser real. Y si hay una razón por la que no me voy, es porque cuando uno ama así como te amo yo, no significa que tenga que irme, aunque tú nunca me correspondas. Quiero que escuches la canción, aunque ya te la haya puesto muchas veces, hazlo con calma y sin prisa. Quiero que nunca dudes cuánto te amo, mi ojitos lindos.
+        No hay ninguna razón para irme, porque aunque yo no sea el hombre perfecto para ti, mi corazón sí te escogió, y lo hizo sin dudas y sin miedo. Pero entiendo que el tuyo nunca pudo escoger el mío, y que a veces dos corazones no se encuentran, aunque uno ame con toda el alma. A mí me dijeron que luchara por lo que más anhelaba y amaba, y yo luché, y luché de verdad por este amor que siento. Pero, ¿de qué sirve amar con todo el corazón y demostrarlo todo por una persona? Esa es la pregunta que todavía me hago.
+        <br><br>
+        Te he sido sincero muchas veces, y hoy también lo soy, no te voy a mentir. Me hubiera gustado tanto que todo fuera diferente, que tu corazón se hubiera acercado al mío, así como el mío siempre intentó acercarse al tuyo. La imagen de la portada y la que está aquí abajo lo dice todo: simboliza ese amor tan grande que yo tenía y que todavía tengo aquí, un amor casi más grande que yo, el que siento por ti.
+        <br><br>
+        Pero ese amor se quedó en mis manos, nunca pude entregártelo, y aun así nunca dejó de ser real. Y si hay una razón por la que no me voy, es porque cuando uno ama así como te amo yo, no significa que tenga que irme, aunque tú nunca me correspondas. Quiero que escuches la canción, aunque ya te la haya puesto muchas veces, hazlo con calma y sin prisa. Quiero que nunca dudes cuánto te amo, mi ojitos lindos.
     </p>
-    <img src="REEMPLAZA_POR_BASE64_DE_TU_IMAGEN.png" alt="Imagen" class="imagen-principal">
+
+    <img src="REEMPLAZA_POR_BASE64_DE_TU_IMAGEN.png" class="imagen-principal">
 </div>
 
 <div class="play" id="playBtn">▶️ Reproducir música</div>
@@ -100,7 +160,6 @@ h1{
 </audio>
 
 <script>
-// PLAY / PAUSA
 const musica = document.getElementById("musica");
 const playBtn = document.getElementById("playBtn");
 let reproduciendo = false;
@@ -118,7 +177,7 @@ playBtn.addEventListener("click", () => {
     }
 });
 
-// Corazones cayendo
+// Corazones
 function crearCorazon(){
     const c=document.createElement("img");
     c.src="REEMPLAZA_POR_BASE64_DE_TU_CORAZON.png";
@@ -130,21 +189,6 @@ function crearCorazon(){
     setTimeout(()=>c.remove(),8000);
 }
 setInterval(crearCorazon,400);
-
-// Media Session API para notificaciones con controles
-if('mediaSession' in navigator){
-    navigator.mediaSession.metadata=new MediaMetadata({
-        title:'La razón para irme',
-        artist:'Yeison Pérez',
-        album:'Página musical',
-        artwork:[
-            {src:'foto.jpg',sizes:'512x512',type:'image/jpeg'}
-        ]
-    });
-
-    navigator.mediaSession.setActionHandler('play', ()=>{ musica.play(); reproduciendo=true; playBtn.innerText="⏸️ Pausar música"; });
-    navigator.mediaSession.setActionHandler('pause', ()=>{ musica.pause(); reproduciendo=false; playBtn.innerText="▶️ Reproducir música"; });
-}
 </script>
 
 </body>
