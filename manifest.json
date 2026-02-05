@@ -1,0 +1,15 @@
+{
+  "name": "La razón para irme",
+  "short_name": "MiCancion",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#ff004f",
+  "icons": [
+    {
+      "src": "foto.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
