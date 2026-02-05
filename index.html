@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La razón para irme</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #9f2424;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Cursive', Georgia, serif;
+        }
+
+        p {
+            font-size: 1rem;
+            text-align: center;
+            max-width: 400px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        img {
+            width: 80%;
+            max-width: 300px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+        }
+
+        /* Botones, si quieres agregar algo después */
+        button {
+            background-color: #fff;
+            color: #9f2424;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #eee;
+        }
+
+        /* Animación de corazones */
+        .heart {
+            position: fixed;
+            top: -50px;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: fall linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>La razón para irme</h1>
+
+    <p>
+        No hay ninguna razón para irme, porque amarte nunca fue un error ni una carga, fue una elección sincera que nació sin promesas y se quedó en mi corazón, y aunque los tiempos no coincidan y el camino no sea fácil, lo que siento por ti es real, profundo y suficiente como para no buscar una salida de alguien a quien amo de verdad.
+    </p>
+
+    <img src="yo-Photoroom.png" alt="Imagen romántica">
+
+    <script>
+        // Generar corazones aleatorios
+        const numberOfHearts = 20;
+        for (let i = 0; i < numberOfHearts; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+            heart.style.width = (10 + Math.random() * 20) + 'px';
+            heart.style.height = heart.style.width;
+            document.body.appendChild(heart);
+        }
+    </script>
+
+</body>
+</html>
